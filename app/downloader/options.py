@@ -15,54 +15,22 @@ def build_options(
 ):
 
     options = {
-
         "format": format_id,
-
-        "ffmpeg_location":
-            get_ffmpeg_path(),
-
-        "outtmpl":
-            output_template,
-
-        "noplaylist":
-            False,
-
-        "ignoreerrors":
-            False,
-
-        "retries":
-            5,
-
-        "fragment_retries":
-            5,
-
-        "extractor_retries":
-            5,
-
-        "socket_timeout":
-            10,
-
-        "nooverwrites":
-            True,
-
-        "continuedl":
-            True,
-
-        "nopart":
-            False,
-
-        "addmetadata":
-            True,
-
-        "verbose":
-            True,
-
-        "logger":
-            YTDLPLogger(worker),
-
-        "progress_hooks": [
-            worker.progress_hook
-        ],
+        "ffmpeg_location": get_ffmpeg_path(),
+        "outtmpl": output_template,
+        "noplaylist": False,
+        "ignoreerrors": False,
+        "retries": 5,
+        "fragment_retries": 5,
+        "extractor_retries": 5,
+        "socket_timeout": 10,
+        "nooverwrites": True,
+        "continuedl": True,
+        "nopart": False,
+        "addmetadata": True,
+        "verbose": True,
+        "logger": YTDLPLogger(worker),
+        "progress_hooks": [worker.progress_hook],
     }
 
     if mode == "audio":
@@ -71,16 +39,9 @@ def build_options(
 
             options["postprocessors"] = [
                 {
-                    "key":
-                        "FFmpegExtractAudio",
-
-                    "preferredcodec":
-                        "mp3",
-
-                    "preferredquality":
-                        str(
-                            audio_quality
-                        ),
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3",
+                    "preferredquality": str(audio_quality),
                 }
             ]
 
@@ -88,16 +49,9 @@ def build_options(
 
             options["postprocessors"] = [
                 {
-                    "key":
-                        "FFmpegExtractAudio",
-
-                    "preferredcodec":
-                        "m4a",
-
-                    "preferredquality":
-                        str(
-                            audio_quality
-                        ),
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "m4a",
+                    "preferredquality": str(audio_quality),
                 }
             ]
 
@@ -105,11 +59,8 @@ def build_options(
 
             options["postprocessors"] = [
                 {
-                    "key":
-                        "FFmpegExtractAudio",
-
-                    "preferredcodec":
-                        "wav",
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "wav",
                 }
             ]
 
@@ -117,16 +68,9 @@ def build_options(
 
             options["postprocessors"] = [
                 {
-                    "key":
-                        "FFmpegExtractAudio",
-
-                    "preferredcodec":
-                        "opus",
-
-                    "preferredquality":
-                        str(
-                            audio_quality
-                        ),
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "opus",
+                    "preferredquality": str(audio_quality),
                 }
             ]
 
@@ -134,20 +78,14 @@ def build_options(
 
         if video_format == "mp4":
 
-            options[
-                "merge_output_format"
-            ] = "mp4"
+            options["merge_output_format"] = "mp4"
 
         elif video_format == "mkv":
 
-            options[
-                "merge_output_format"
-            ] = "mkv"
+            options["merge_output_format"] = "mkv"
 
         elif video_format == "webm":
 
-            options[
-                "merge_output_format"
-            ] = "webm"
+            options["merge_output_format"] = "webm"
 
     return options

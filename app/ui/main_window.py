@@ -28,9 +28,7 @@ class MainWindow(QMainWindow):
 
         self.worker = None
 
-        self.setWindowTitle(
-            "YouTube Downloader"
-        )
+        self.setWindowTitle("YouTube Downloader")
 
         self.resize(
             850,
@@ -49,74 +47,45 @@ class MainWindow(QMainWindow):
 
         central = QWidget()
 
-        self.setCentralWidget(
-            central
-        )
+        self.setCentralWidget(central)
 
-        main_layout = QVBoxLayout(
-            central
-        )
+        main_layout = QVBoxLayout(central)
 
         # ====================================================
         # URL
         # ====================================================
 
-        url_group = QGroupBox(
-            "YouTube URL"
-        )
+        url_group = QGroupBox("YouTube URL")
 
-        url_layout = QVBoxLayout(
-            url_group
-        )
+        url_layout = QVBoxLayout(url_group)
 
         self.url_input = QLineEdit()
 
-        self.url_input.setPlaceholderText(
-            "Paste YouTube video or playlist URL..."
-        )
+        self.url_input.setPlaceholderText("Paste YouTube video or playlist URL...")
 
-        url_layout.addWidget(
-            self.url_input
-        )
+        url_layout.addWidget(self.url_input)
 
-        main_layout.addWidget(
-            url_group
-        )
+        main_layout.addWidget(url_group)
 
         # ====================================================
         # Settings
         # ====================================================
 
-        settings_group = QGroupBox(
-            "Download Settings"
-        )
+        settings_group = QGroupBox("Download Settings")
 
-        settings_layout = QGridLayout(
-            settings_group
-        )
+        settings_layout = QGridLayout(settings_group)
 
         # ====================================================
         # Output Directory
         # ====================================================
 
-        output_label = QLabel(
-            "Output folder:"
-        )
+        output_label = QLabel("Output folder:")
 
-        self.output_input = QLineEdit(
-            str(
-                Path.home()
-                / "Downloads"
-            )
-        )
+        self.output_input = QLineEdit(str(Path.home() / "Downloads"))
 
-        browse_button = QPushButton(
-            "Browse"
-        )
+        browse_button = QPushButton("Browse")
 
-        browse_button.clicked.connect(
-            self.select_output_folder
-        )
+        browse_button.clicked.connect(self.select_output_folder)
 
         settings_layout.addWidget(
             output_label,
@@ -140,9 +109,7 @@ class MainWindow(QMainWindow):
         # Download Type
         # ====================================================
 
-        type_label = QLabel(
-            "Type:"
-        )
+        type_label = QLabel("Type:")
 
         self.type_combo = QComboBox()
 
@@ -156,9 +123,7 @@ class MainWindow(QMainWindow):
             "audio",
         )
 
-        self.type_combo.currentIndexChanged.connect(
-            self.update_download_type
-        )
+        self.type_combo.currentIndexChanged.connect(self.update_download_type)
 
         settings_layout.addWidget(
             type_label,
@@ -178,9 +143,7 @@ class MainWindow(QMainWindow):
         # Video Quality
         # ====================================================
 
-        self.video_quality_label = QLabel(
-            "Video quality:"
-        )
+        self.video_quality_label = QLabel("Video quality:")
 
         self.video_quality_combo = QComboBox()
 
@@ -237,9 +200,7 @@ class MainWindow(QMainWindow):
         # Video Format
         # ====================================================
 
-        self.video_format_label = QLabel(
-            "Video format:"
-        )
+        self.video_format_label = QLabel("Video format:")
 
         self.video_format_combo = QComboBox()
 
@@ -276,9 +237,7 @@ class MainWindow(QMainWindow):
         # Audio Format
         # ====================================================
 
-        self.audio_format_label = QLabel(
-            "Audio format:"
-        )
+        self.audio_format_label = QLabel("Audio format:")
 
         self.audio_format_combo = QComboBox()
 
@@ -320,9 +279,7 @@ class MainWindow(QMainWindow):
         # Audio Quality
         # ====================================================
 
-        self.audio_quality_label = QLabel(
-            "Audio quality:"
-        )
+        self.audio_quality_label = QLabel("Audio quality:")
 
         self.audio_quality_combo = QComboBox()
 
@@ -346,9 +303,7 @@ class MainWindow(QMainWindow):
             "320",
         )
 
-        self.audio_quality_combo.setCurrentIndex(
-            1
-        )
+        self.audio_quality_combo.setCurrentIndex(1)
 
         settings_layout.addWidget(
             self.audio_quality_label,
@@ -364,67 +319,39 @@ class MainWindow(QMainWindow):
             2,
         )
 
-        main_layout.addWidget(
-            settings_group
-        )
+        main_layout.addWidget(settings_group)
 
         # ====================================================
         # Progress
         # ====================================================
 
-        progress_group = QGroupBox(
-            "Download Progress"
-        )
+        progress_group = QGroupBox("Download Progress")
 
-        progress_layout = QVBoxLayout(
-            progress_group
-        )
+        progress_layout = QVBoxLayout(progress_group)
 
-        self.status_label = QLabel(
-            "Ready"
-        )
+        self.status_label = QLabel("Ready")
 
         self.progress_bar = QProgressBar()
 
-        self.progress_bar.setValue(
-            0
-        )
+        self.progress_bar.setValue(0)
 
-        self.speed_label = QLabel(
-            "Speed: -"
-        )
+        self.speed_label = QLabel("Speed: -")
 
-        self.eta_label = QLabel(
-            "ETA: -"
-        )
+        self.eta_label = QLabel("ETA: -")
 
-        self.file_label = QLabel(
-            "File: -"
-        )
+        self.file_label = QLabel("File: -")
 
-        progress_layout.addWidget(
-            self.status_label
-        )
+        progress_layout.addWidget(self.status_label)
 
-        progress_layout.addWidget(
-            self.progress_bar
-        )
+        progress_layout.addWidget(self.progress_bar)
 
-        progress_layout.addWidget(
-            self.speed_label
-        )
+        progress_layout.addWidget(self.speed_label)
 
-        progress_layout.addWidget(
-            self.eta_label
-        )
+        progress_layout.addWidget(self.eta_label)
 
-        progress_layout.addWidget(
-            self.file_label
-        )
+        progress_layout.addWidget(self.file_label)
 
-        main_layout.addWidget(
-            progress_group
-        )
+        main_layout.addWidget(progress_group)
 
         # ====================================================
         # Buttons
@@ -432,63 +359,37 @@ class MainWindow(QMainWindow):
 
         button_layout = QHBoxLayout()
 
-        self.download_button = QPushButton(
-            "▶ Start Download"
-        )
+        self.download_button = QPushButton("▶ Start Download")
 
-        self.stop_button = QPushButton(
-            "■ Stop"
-        )
+        self.stop_button = QPushButton("■ Stop")
 
-        self.stop_button.setEnabled(
-            False
-        )
+        self.stop_button.setEnabled(False)
 
-        self.download_button.clicked.connect(
-            self.start_download
-        )
+        self.download_button.clicked.connect(self.start_download)
 
-        self.stop_button.clicked.connect(
-            self.stop_download
-        )
+        self.stop_button.clicked.connect(self.stop_download)
 
-        button_layout.addWidget(
-            self.download_button
-        )
+        button_layout.addWidget(self.download_button)
 
-        button_layout.addWidget(
-            self.stop_button
-        )
+        button_layout.addWidget(self.stop_button)
 
-        main_layout.addLayout(
-            button_layout
-        )
+        main_layout.addLayout(button_layout)
 
         # ====================================================
         # Log
         # ====================================================
 
-        log_group = QGroupBox(
-            "Log"
-        )
+        log_group = QGroupBox("Log")
 
-        log_layout = QVBoxLayout(
-            log_group
-        )
+        log_layout = QVBoxLayout(log_group)
 
         self.log_output = QPlainTextEdit()
 
-        self.log_output.setReadOnly(
-            True
-        )
+        self.log_output.setReadOnly(True)
 
-        log_layout.addWidget(
-            self.log_output
-        )
+        log_layout.addWidget(self.log_output)
 
-        main_layout.addWidget(
-            log_group
-        )
+        main_layout.addWidget(log_group)
 
     # ========================================================
     # Update Download Type
@@ -496,42 +397,23 @@ class MainWindow(QMainWindow):
 
     def update_download_type(self):
 
-        is_video = (
-            self.type_combo.currentData()
-            == "video"
-        )
+        is_video = self.type_combo.currentData() == "video"
 
-        self.video_quality_label.setEnabled(
-            is_video
-        )
+        self.video_quality_label.setEnabled(is_video)
 
-        self.video_quality_combo.setEnabled(
-            is_video
-        )
+        self.video_quality_combo.setEnabled(is_video)
 
-        self.video_format_label.setEnabled(
-            is_video
-        )
+        self.video_format_label.setEnabled(is_video)
 
-        self.video_format_combo.setEnabled(
-            is_video
-        )
+        self.video_format_combo.setEnabled(is_video)
 
-        self.audio_format_label.setEnabled(
-            not is_video
-        )
+        self.audio_format_label.setEnabled(not is_video)
 
-        self.audio_format_combo.setEnabled(
-            not is_video
-        )
+        self.audio_format_combo.setEnabled(not is_video)
 
-        self.audio_quality_label.setEnabled(
-            not is_video
-        )
+        self.audio_quality_label.setEnabled(not is_video)
 
-        self.audio_quality_combo.setEnabled(
-            not is_video
-        )
+        self.audio_quality_combo.setEnabled(not is_video)
 
     # ========================================================
     # Select Folder
@@ -547,9 +429,7 @@ class MainWindow(QMainWindow):
 
         if folder:
 
-            self.output_input.setText(
-                folder
-            )
+            self.output_input.setText(folder)
 
     # ========================================================
     # Start
@@ -557,10 +437,7 @@ class MainWindow(QMainWindow):
 
     def start_download(self):
 
-        url = (
-            self.url_input.text()
-            .strip()
-        )
+        url = self.url_input.text().strip()
 
         if not url:
 
@@ -572,10 +449,7 @@ class MainWindow(QMainWindow):
 
             return
 
-        output_dir = (
-            self.output_input.text()
-            .strip()
-        )
+        output_dir = self.output_input.text().strip()
 
         if not output_dir:
 
@@ -587,84 +461,47 @@ class MainWindow(QMainWindow):
 
             return
 
-        mode = (
-            self.type_combo.currentData()
-        )
+        mode = self.type_combo.currentData()
 
-        video_quality = (
-            self.video_quality_combo.currentData()
-        )
+        video_quality = self.video_quality_combo.currentData()
 
-        video_format = (
-            self.video_format_combo.currentData()
-        )
+        video_format = self.video_format_combo.currentData()
 
-        audio_quality = (
-            self.audio_quality_combo.currentData()
-        )
+        audio_quality = self.audio_quality_combo.currentData()
 
-        audio_format = (
-            self.audio_format_combo.currentData()
-        )
+        audio_format = self.audio_format_combo.currentData()
 
         self.log_output.clear()
 
-        self.progress_bar.setValue(
-            0
-        )
+        self.progress_bar.setValue(0)
 
-        self.status_label.setText(
-            "Starting..."
-        )
+        self.status_label.setText("Starting...")
 
-        self.speed_label.setText(
-            "Speed: -"
-        )
+        self.speed_label.setText("Speed: -")
 
-        self.eta_label.setText(
-            "ETA: -"
-        )
+        self.eta_label.setText("ETA: -")
 
-        self.file_label.setText(
-            "File: -"
-        )
+        self.file_label.setText("File: -")
 
-        self.download_button.setEnabled(
-            False
-        )
+        self.download_button.setEnabled(False)
 
-        self.stop_button.setEnabled(
-            True
-        )
+        self.stop_button.setEnabled(True)
 
         self.worker = DownloadWorker(
-
             url=url,
-
             output_dir=output_dir,
-
             mode=mode,
-
             video_quality=video_quality,
-
             video_format=video_format,
-
             audio_quality=audio_quality,
-
             audio_format=audio_format,
         )
 
-        self.worker.progress.connect(
-            self.update_progress
-        )
+        self.worker.progress.connect(self.update_progress)
 
-        self.worker.log.connect(
-            self.add_log
-        )
+        self.worker.log.connect(self.add_log)
 
-        self.worker.finished.connect(
-            self.download_finished
-        )
+        self.worker.finished.connect(self.download_finished)
 
         self.worker.start()
 
@@ -678,17 +515,11 @@ class MainWindow(QMainWindow):
 
             self.worker.stop()
 
-            self.status_label.setText(
-                "Stopping..."
-            )
+            self.status_label.setText("Stopping...")
 
-            self.add_log(
-                "Stopping download..."
-            )
+            self.add_log("Stopping download...")
 
-            self.stop_button.setEnabled(
-                False
-            )
+            self.stop_button.setEnabled(False)
 
     # ========================================================
     # Progress
@@ -704,43 +535,25 @@ class MainWindow(QMainWindow):
             0,
         )
 
-        self.progress_bar.setValue(
-            percentage
-        )
+        self.progress_bar.setValue(percentage)
 
-        status = data.get(
-            "status"
-        )
+        status = data.get("status")
 
         if status == "downloading":
 
-            self.status_label.setText(
-                f"Downloading... "
-                f"{percentage}%"
-            )
+            self.status_label.setText(f"Downloading... " f"{percentage}%")
 
-            speed = data.get(
-                "speed"
-            )
+            speed = data.get("speed")
 
             if speed:
 
-                self.speed_label.setText(
-                    "Speed: "
-                    + self.format_bytes(speed)
-                    + "/s"
-                )
+                self.speed_label.setText("Speed: " + self.format_bytes(speed) + "/s")
 
-            eta = data.get(
-                "eta"
-            )
+            eta = data.get("eta")
 
             if eta is not None:
 
-                self.eta_label.setText(
-                    "ETA: "
-                    + self.format_eta(eta)
-                )
+                self.eta_label.setText("ETA: " + self.format_eta(eta))
 
             filename = data.get(
                 "filename",
@@ -749,16 +562,11 @@ class MainWindow(QMainWindow):
 
             if filename:
 
-                self.file_label.setText(
-                    "File: "
-                    + Path(filename).name
-                )
+                self.file_label.setText("File: " + Path(filename).name)
 
         elif status == "finished":
 
-            self.status_label.setText(
-                "Processing..."
-            )
+            self.status_label.setText("Processing...")
 
     # ========================================================
     # Log
@@ -769,9 +577,7 @@ class MainWindow(QMainWindow):
         message,
     ):
 
-        self.log_output.appendPlainText(
-            message
-        )
+        self.log_output.appendPlainText(message)
 
     # ========================================================
     # Finished
@@ -783,27 +589,17 @@ class MainWindow(QMainWindow):
         message,
     ):
 
-        self.download_button.setEnabled(
-            True
-        )
+        self.download_button.setEnabled(True)
 
-        self.stop_button.setEnabled(
-            False
-        )
+        self.stop_button.setEnabled(False)
 
         if success:
 
-            self.progress_bar.setValue(
-                100
-            )
+            self.progress_bar.setValue(100)
 
-            self.status_label.setText(
-                "Completed ✓"
-            )
+            self.status_label.setText("Completed ✓")
 
-            self.add_log(
-                message
-            )
+            self.add_log(message)
 
             QMessageBox.information(
                 self,
@@ -813,14 +609,9 @@ class MainWindow(QMainWindow):
 
         else:
 
-            self.status_label.setText(
-                "Failed"
-            )
+            self.status_label.setText("Failed")
 
-            self.add_log(
-                "ERROR: "
-                + message
-            )
+            self.add_log("ERROR: " + message)
 
         self.worker = None
 
@@ -833,9 +624,7 @@ class MainWindow(QMainWindow):
         value,
     ):
 
-        value = float(
-            value
-        )
+        value = float(value)
 
         units = [
             "B",
@@ -849,15 +638,11 @@ class MainWindow(QMainWindow):
 
             if value < 1024:
 
-                return (
-                    f"{value:.2f} {unit}"
-                )
+                return f"{value:.2f} {unit}"
 
             value /= 1024
 
-        return (
-            f"{value:.2f} PB"
-        )
+        return f"{value:.2f} PB"
 
     # ========================================================
     # Format ETA
@@ -872,9 +657,7 @@ class MainWindow(QMainWindow):
 
             return "-"
 
-        seconds = int(
-            seconds
-        )
+        seconds = int(seconds)
 
         hours, remainder = divmod(
             seconds,
@@ -888,13 +671,6 @@ class MainWindow(QMainWindow):
 
         if hours:
 
-            return (
-                f"{hours:02}:"
-                f"{minutes:02}:"
-                f"{seconds:02}"
-            )
+            return f"{hours:02}:" f"{minutes:02}:" f"{seconds:02}"
 
-        return (
-            f"{minutes:02}:"
-            f"{seconds:02}"
-        )
+        return f"{minutes:02}:" f"{seconds:02}"

@@ -8,30 +8,22 @@ class YTDLPLogger:
 
         if message:
 
-            self.worker.log.emit(
-                f"[DEBUG] {message}"
-            )
+            self.worker.log.emit(f"[DEBUG] {message}")
 
     def info(self, message):
 
         if message:
 
-            self.worker.log.emit(
-                f"[INFO] {message}"
-            )
+            self.worker.log.emit(f"[INFO] {message}")
 
     def warning(self, message):
 
         if message:
 
-            self.worker.log.emit(
-                f"[WARNING] {message}"
-            )
+            self.worker.log.emit(f"[WARNING] {message}")
 
     def error(self, message):
 
         if message:
 
-            self.worker.log.emit(
-                f"[ERROR] {message}"
-            )
+            self.worker.log.emit(f"[ERROR] {message}")

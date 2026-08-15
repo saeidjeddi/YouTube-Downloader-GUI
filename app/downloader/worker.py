@@ -58,9 +58,7 @@ class DownloadWorker(QThread):
 
         try:
 
-            output_dir = Path(
-                self.output_dir
-            ).expanduser()
+            output_dir = Path(self.output_dir).expanduser()
 
             output_dir.mkdir(
                 parents=True,
@@ -72,8 +70,7 @@ class DownloadWorker(QThread):
             # =================================================
 
             output_template = (
-                str(output_dir)
-                + "/%(playlist_title|Video)s/"
+                str(output_dir) + "/%(playlist_title|Video)s/"
                 "%(playlist_index|1)s - %(title)s.%(ext)s"
             )
 
@@ -97,9 +94,7 @@ class DownloadWorker(QThread):
 
                 else:
 
-                    video_format = (
-                        f"bestvideo[height<={self.video_quality}]"
-                    )
+                    video_format = f"bestvideo[height<={self.video_quality}]"
 
                 # ------------------------------------------------
                 # MP4
@@ -108,11 +103,8 @@ class DownloadWorker(QThread):
                 if self.video_format == "mp4":
 
                     format_id = (
-                        video_format
-                        + "[ext=mp4]+"
-                        "bestaudio[ext=m4a]/"
-                        + video_format
-                        + "+bestaudio/best"
+                        video_format + "[ext=mp4]+"
+                        "bestaudio[ext=m4a]/" + video_format + "+bestaudio/best"
                     )
 
                 # ------------------------------------------------
@@ -122,11 +114,8 @@ class DownloadWorker(QThread):
                 elif self.video_format == "webm":
 
                     format_id = (
-                        video_format
-                        + "[ext=webm]+"
-                        "bestaudio[ext=webm]/"
-                        + video_format
-                        + "+bestaudio/best"
+                        video_format + "[ext=webm]+"
+                        "bestaudio[ext=webm]/" + video_format + "+bestaudio/best"
                     )
 
                 # ------------------------------------------------
@@ -135,33 +124,21 @@ class DownloadWorker(QThread):
 
                 else:
 
-                    format_id = (
-                        video_format
-                        + "+bestaudio/best"
-                    )
+                    format_id = video_format + "+bestaudio/best"
 
             # =================================================
             # yt-dlp Options
             # =================================================
 
             options = build_options(
-
                 worker=self,
-
                 output_dir=output_dir,
-
                 mode=self.mode,
-
                 video_quality=self.video_quality,
-
                 video_format=self.video_format,
-
                 audio_quality=self.audio_quality,
-
                 audio_format=self.audio_format,
-
                 format_id=format_id,
-
                 output_template=output_template,
             )
 
@@ -169,27 +146,15 @@ class DownloadWorker(QThread):
             # Start Download
             # =================================================
 
-            self.log.emit(
-                "Starting yt-dlp..."
-            )
+            self.log.emit("Starting yt-dlp...")
 
-            self.log.emit(
-                f"Mode: {self.mode}"
-            )
+            self.log.emit(f"Mode: {self.mode}")
 
-            self.log.emit(
-                f"Format: {format_id}"
-            )
+            self.log.emit(f"Format: {format_id}")
 
-            with yt_dlp.YoutubeDL(
-                options
-            ) as ydl:
+            with yt_dlp.YoutubeDL(options) as ydl:
 
-                ydl.download(
-                    [
-                        self.url
-                    ]
-                )
+                ydl.download([self.url])
 
             # =================================================
             # Finished
@@ -227,13 +192,9 @@ class DownloadWorker(QThread):
 
         if self.stop_requested:
 
-            raise yt_dlp.utils.DownloadError(
-                "Download cancelled by user."
-            )
+            raise yt_dlp.utils.DownloadError("Download cancelled by user.")
 
-        status = data.get(
-            "status"
-        )
+        status = data.get("status")
 
         # ====================================================
         # Downloading
@@ -246,55 +207,26 @@ class DownloadWorker(QThread):
                 0,
             )
 
-            total = (
-                data.get(
-                    "total_bytes"
-                )
-                or data.get(
-                    "total_bytes_estimate"
-                )
-                or 0
-            )
+            total = data.get("total_bytes") or data.get("total_bytes_estimate") or 0
 
             percentage = 0
 
             if total:
 
-                percentage = int(
-                    downloaded
-                    / total
-                    * 100
-                )
+                percentage = int(downloaded / total * 100)
 
             self.progress.emit(
                 {
-                    "status":
-                        "downloading",
-
-                    "percentage":
-                        percentage,
-
-                    "downloaded":
-                        downloaded,
-
-                    "total":
-                        total,
-
-                    "speed":
-                        data.get(
-                            "speed"
-                        ),
-
-                    "eta":
-                        data.get(
-                            "eta"
-                        ),
-
-                    "filename":
-                        data.get(
-                            "filename",
-                            "",
-                        ),
+                    "status": "downloading",
+                    "percentage": percentage,
+                    "downloaded": downloaded,
+                    "total": total,
+                    "speed": data.get("speed"),
+                    "eta": data.get("eta"),
+                    "filename": data.get(
+                        "filename",
+                        "",
+                    ),
                 }
             )
 
@@ -306,16 +238,11 @@ class DownloadWorker(QThread):
 
             self.progress.emit(
                 {
-                    "status":
-                        "finished",
-
-                    "percentage":
-                        100,
-
-                    "filename":
-                        data.get(
-                            "filename",
-                            "",
-                        ),
+                    "status": "finished",
+                    "percentage": 100,
+                    "filename": data.get(
+                        "filename",
+                        "",
+                    ),
                 }
             )

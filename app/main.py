@@ -7,21 +7,15 @@ from app.ui.main_window import MainWindow
 
 def main():
 
-    app = QApplication(
-        sys.argv
-    )
+    app = QApplication(sys.argv)
 
-    app.setApplicationName(
-        "YouTube Downloader"
-    )
+    app.setApplicationName("YouTube Downloader")
 
     window = MainWindow()
 
     window.show()
 
-    sys.exit(
-        app.exec()
-    )
+    sys.exit(app.exec())
 
 
 if __name__ == "__main__":
