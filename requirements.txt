@@ -12,4 +12,6 @@ requests==2.34.2
 setuptools==84.0.0
 shiboken6==6.11.1
 urllib3==2.7.0
-yt-dlp==2026.7.4
+yt-dlp[default]==2026.7.4
+
+
