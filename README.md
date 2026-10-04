@@ -7,7 +7,7 @@ A modern desktop YouTube downloader built with **Python**, **PySide6**, and **yt
 This application provides a simple graphical interface for downloading YouTube videos and audio with different qualities and formats.
 
 <p align="center">
-  <img src="img/Screenshot From 2026-08-14 21-57-03.png" width="800">
+  <img src="assets/img/Screenshot From 2026-08-14 21-57-03.png" width="800">
 </p>
 
 ## ✨ Features
