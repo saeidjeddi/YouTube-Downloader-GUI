@@ -48,11 +48,11 @@ This application provides a simple graphical interface for downloading YouTube v
 
 ## 📋 Requirements
 
-| Tool | Why it is needed |
-|------|------------------|
-| **Python** | Tested with Python 3.14 |
-| **FFmpeg** and **FFprobe** | Merging video + audio, audio conversion |
-| **Deno** | JavaScript runtime that yt-dlp uses to solve YouTube's challenges |
+| Tool                                   | Why it is needed                                                  |
+| -------------------------------------- | ----------------------------------------------------------------- |
+| **Python**                       | Tested with Python 3.14                                           |
+| **FFmpeg** and **FFprobe** | Merging video + audio, audio conversion                           |
+| **Deno**                         | JavaScript runtime that yt-dlp uses to solve YouTube's challenges |
 
 Python packages are listed in [`requirements.txt`](requirements.txt) (they include `yt-dlp[default]`, which pulls in the `yt-dlp-ejs` solver scripts).
 

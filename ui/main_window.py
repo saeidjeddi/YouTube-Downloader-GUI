@@ -19,6 +19,9 @@ from PySide6.QtWidgets import (
 
 from app.downloader.worker import DownloadWorker
 
+ICON_PATH = Path(__file__).resolve().parent.parent / "assets" / "icon" / "icon.png"
+
+
 
 class MainWindow(QMainWindow):
 
